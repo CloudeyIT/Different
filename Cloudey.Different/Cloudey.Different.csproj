@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>true</IsPackable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <PackageId>Cloudey.Different</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Kristo Lippur</Authors>
+        <Company>Cloudey IT Ltd.</Company>
+        <SupportUrl>https://cloudey.net</SupportUrl>
+        <WebPage>https://cloudey.net</WebPage>
+        <PackageTags>Diff;Patch;Merge;Diffs;MergeRequest;string diff;diff-match-patch;diffmatchpatch</PackageTags>
+        <Description>
+            Robust, easy-to-use diff and patch library for comparing and synchronising text with zero dependencies.
+            
+            Provides useful extension methods to generate diff and patch operations for strings, generating HTML for visualising diffs, and applying patch operations to text.
+            Based on Google's diff-match-patch library.
+            
+            Copyright (c) Cloudey IT Ltd
+            
+            For diff-match-patch library: 
+            Copyright (c) 2018 The diff-match-patch Authors (https://github.com/google/diff-match-patch)
+            Licensed under Apache 2.0, with modifications from package authors
+        </Description>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/CloudeyIT/Different.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+        <None Include="..\README.md" Pack="true" PackagePath="\" />
+    </ItemGroup>
+
+</Project>
