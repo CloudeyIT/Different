@@ -42,7 +42,7 @@ public static class PatchExtensions
 
     public static List<Patch> ParsePatches (this string patchesAsText)
     {
-        return _dmi.patch_fromText(patchesAsText);
+        return _dmi.patch_fromText(patchesAsText.ReplaceLineEndings("\n")); // DMI cannot parse CRLF line endings
     }
 
     public static string? Apply (this List<Patch> patches, string from)

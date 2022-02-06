@@ -120,17 +120,158 @@ diffs.Html();
 ```
 Details: [diff-match-patch#diff_prettyHtml](https://github.com/google/diff-match-patch/wiki/API#diff_prettyhtmldiffs--html)
 
+### 🩹 Patch
+**Get a list of patches given two texts, a text and a diff, or only a diff**  
+Patches are a list of operations to transform one text to another. They provide a way to "apply" diffs.
+
+```c#
+string from = "Hello!\nWho's there?";
+string to = "Hallo?\nWho's there?";
+
+// Given two strings
+List<Patch> patches = from.Patch(to);
+
+// Given a string and diffs
+List<Diff> diffs = from.Diff(to);
+List<Patch> patches = from.Patch(diffs);
+
+// Given diffs
+List<Diff> diffs = from.Diff(to);
+List<Patch> patches = diffs.Patch();
+```
+*Result* (serialised to JSON)
+```json
+[
+  {
+    "diffs": [
+      {
+        "operation": 2,
+        "text": "H"
+      },
+      {
+        "operation": 0,
+        "text": "ello!"
+      },
+      {
+        "operation": 1,
+        "text": "allo?"
+      },
+      {
+        "operation": 2,
+        "text": "\nWho"
+      }
+    ],
+    "start1": 0,
+    "start2": 0,
+    "length1": 10,
+    "length2": 10
+  }
+]
+```
+Details: [diff-match-patch#patch_make](https://github.com/google/diff-match-patch/wiki/API#patch_maketext1-text2--patches)
+
+### 🧩 Apply patch
+**Apply a list of patches to a string**  
+If the patches cannot be applied, returns `null`
+
+```c#
+string from = "Hello!\nWho's there?";
+string to = "Hallo?\nWho's there?";
+
+var patch = from.Patch(to);
+
+// Using extension method on string
+string? result = from.ApplyPatches(patch);
+
+// Using extension method on List<Patch>
+string? result = patch.Apply(from);
+```
+*Result*
+```c#
+"Hallo?\nWho's there?"
+```
+Details: [diff-match-patch#patch_apply](https://github.com/google/diff-match-patch/wiki/API#patch_applypatches-text1--text2-results)
+
+### 📃 Patch to text
+**Get the text representation of a list of patch operations**  
+The format is very similar to the standard GNU diff/patch format. This text can be stored and later converted back to patch objects (see "Text to patch" below).
+
+```c#
+string from = "Hello!\nWho's there?";
+string to = "Hallo?\nWho's there?";
+
+List<Patch> patches = from.Patch(to);
+
+patches.Text();
+```
+*Result*
+```
+@@ -1,10 +1,10 @@
+ H
+-ello!
++allo?
+ %0aWho
+```
+Details: [diff-match-patch#patch_toText](https://github.com/google/diff-match-patch/wiki/API#patch_totextpatches--text)
+
+### 📜 Text to patch
+**Transform a text representation of patches to a list of patch operations**  
+Parses and returns a list of patch objects from their textual representation (see "Patch to text" above).
+
+```c#
+var patchString = @"@@ -1,10 +1,10 @@
+ H
+-ello!
++allo?
+ %0aWho
+";
+
+// Throws ArgumentException on failure
+List<Patch> patches = patchString.ParsePatches();
+
+// Safe, returns true or false depending on success
+bool success = patchString.TryParsePatches(out List<Patch>? patches);
+```
+*Result* (serialised to JSON)
+```json
+[
+  {
+    "diffs": [
+      {
+        "operation": 2,
+        "text": "H"
+      },
+      {
+        "operation": 0,
+        "text": "ello!"
+      },
+      {
+        "operation": 1,
+        "text": "allo?"
+      },
+      {
+        "operation": 2,
+        "text": "\nWho"
+      }
+    ],
+    "start1": 0,
+    "start2": 0,
+    "length1": 10,
+    "length2": 10
+  }
+]
+```
+Details: [diff-match-patch#patch_fromText](https://github.com/google/diff-match-patch/wiki/API#patch_fromtexttext--patches)
+
 ## License
 
 Licensed under Apache 2.0.  
 **Copyright © 2021 Cloudey IT Ltd**  
 Cloudey® is a registered trademark of Cloudey IT Ltd. Use of the trademark is NOT GRANTED under the license of this repository or software package.
 
-For diff-match-patch library contained within repository and distributed code:  
+####For diff-match-patch library contained within repository and distributed code:
+
 Copyright 2018 The diff-match-patch Authors.  
 https://github.com/google/diff-match-patch  
+
 **Modifications were made to the diff-match-patch library (licensed under Apache 2.0) by the authors of this package (Cloudey)**
----
-[![GitHub](https://img.shields.io/github/license/CloudeyIT/Different)](https://github.com/CloudeyIT/Different/blob/master/LICENSE)
-[![Nuget](https://img.shields.io/nuget/v/Cloudey.Different)](https://www.nuget.org/packages/Cloudey.Different/)
-[![Nuget](https://img.shields.io/nuget/dt/Cloudey.Different)](https://www.nuget.org/packages/Cloudey.Different/)
