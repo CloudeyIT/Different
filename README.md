@@ -13,7 +13,7 @@ _Robust, easy-to-use diff and patch library for comparing and synchronising text
 ## What is this
 
 **Different** provides extension methods for creating and applying diffs and patches for plain text.   
-It uses the same robust algorithms and logic as commonly seen used with git repositories, wrapped in a readable, easy-to-use library.  
+It uses the same robust algorithms and logic as commonly used in git, wrapped in a readable, easy-to-use library.  
 
 ## How to use
 
