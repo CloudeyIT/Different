@@ -9,7 +9,7 @@
 
     <PropertyGroup>
         <PackageId>Cloudey.Different</PackageId>
-        <Version>1.0.0</Version>
+        <Version>1.0.1</Version>
         <Authors>Kristo Lippur</Authors>
         <Company>Cloudey IT Ltd.</Company>
         <SupportUrl>https://cloudey.net</SupportUrl>
