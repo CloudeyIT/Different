@@ -269,7 +269,7 @@ Licensed under Apache 2.0.
 **Copyright © 2021 Cloudey IT Ltd**  
 Cloudey® is a registered trademark of Cloudey IT Ltd. Use of the trademark is NOT GRANTED under the license of this repository or software package.
 
-####For diff-match-patch library contained within repository and distributed code:
+#### For diff-match-patch library contained within repository and distributed code:
 
 Copyright 2018 The diff-match-patch Authors.  
 https://github.com/google/diff-match-patch  
